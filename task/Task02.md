@@ -56,6 +56,58 @@ CalculationResponse
 
 
 ## 문제 2
+TaskController
 
+    @GetMapping("api/v1/day-of-the-week")
+        public DayOfTheWeekRequest getDayOfTheWeek(@RequestParam String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return new DayOfTheWeekRequest(localDate);
+    }
+
+DayOfTheWeekRequest
+
+    public class DayOfTheWeekRequest {
+        private  String dayOfTheWeek;
+
+        public String getDayOfTheWeek() {
+            return dayOfTheWeek;
+        }
+
+        public DayOfTheWeekRequest(LocalDate date) {
+            String day = date.getDayOfWeek().toString();
+            this.dayOfTheWeek = day.substring(0, day.length() - 3);
+        }
+    }
 
 ## 문제 3
+TaskController
+
+    @PostMapping("/api/v1/sumList")
+        public int sumList(@RequestBody CalculatorListRequest request) {
+            List<Integer> numbers = request.getList();
+            int sum = 0;
+            for (int num : numbers) {
+                sum += num;
+            }
+            return sum;
+        }
+    }
+
+
+CalculatorListRequest 
+
+    CalculatorListRequest {
+        private List<Integer> numbers;
+
+        public CalculatorListRequest(List<Integer> numbers) {
+            this.numbers = numbers;
+        }
+
+        public List<Integer> getList() {
+            return numbers;
+        }
+
+        public void setList(List<Integer> list) {
+            this.numbers = list;
+        }
+    }
