@@ -82,9 +82,9 @@ DayOfTheWeekRequest
 ## 문제 3
 TaskController
 
-    @PostMapping("/api/v1/sumList")
-        public int sumList(@RequestBody CalculatorListRequest request) {
-            List<Integer> numbers = request.getList();
+    @PostMapping("/api/v1/add-numbers")
+        public int addNumbers(@RequestBody CalculatorListRequest request) {
+            List<Integer> numbers = request.getNumbers();
             int sum = 0;
             for (int num : numbers) {
                 sum += num;
@@ -96,18 +96,20 @@ TaskController
 
 CalculatorListRequest 
 
-    CalculatorListRequest {
+    public class CalculatorListRequest {
         private List<Integer> numbers;
+
+        public CalculatorListRequest() {}
 
         public CalculatorListRequest(List<Integer> numbers) {
             this.numbers = numbers;
         }
 
-        public List<Integer> getList() {
+        public List<Integer> getNumbers() {
             return numbers;
         }
 
-        public void setList(List<Integer> list) {
-            this.numbers = list;
+        public void setNumbers(List<Integer> numbers) {
+            this.numbers = numbers;
         }
     }
