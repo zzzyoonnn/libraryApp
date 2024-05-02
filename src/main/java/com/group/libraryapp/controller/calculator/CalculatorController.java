@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-// API의 진입 지정
+// 주어진 Class를 Controller로 등록
+// Controller : API의 입구
 @RestController
 public class CalculatorController {
 
-    @GetMapping("/add")     // GET /add
+    @GetMapping("/add")     // HTTP Method : GET, HTTP Path : /add인 API로 지정
     public int addTwoNumbers(CalculatorAddRequest request) {
         return request.getNumber1() + request.getNumber2();
     }
 
-    @PostMapping("/multiply")   // POST /multiply
+    @PostMapping("/multiply")   // HTTP Method : POST, HTTP Path : /multiply인 API로 지정
     public int multiplyTwoNumbers(@RequestBody CalculatorMultiplyRequest request) {
         return request.getNumber1() * request.getNumber2();
     }
