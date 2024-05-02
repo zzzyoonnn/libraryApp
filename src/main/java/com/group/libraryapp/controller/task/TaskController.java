@@ -7,7 +7,6 @@ import com.group.libraryapp.dto.task.response.CalculationResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,15 +17,15 @@ public class TaskController {
         return new CalculationResponse(request);
     }
 
-    @GetMapping("api/v1/day-of-the-week")
+    @GetMapping("/api/v1/day-of-the-week")
     public DayOfTheWeekRequest getDayOfTheWeek(@RequestParam String date) {
         LocalDate localDate = LocalDate.parse(date);
         return new DayOfTheWeekRequest(localDate);
     }
 
-    @PostMapping("/api/v1/sumList")
-    public int sumList(@RequestBody CalculatorListRequest request) {
-        List<Integer> numbers = request.getList();
+    @PostMapping("/api/v1/add-numbers")
+    public int addNumbers(@RequestBody CalculatorListRequest request) {
+        List<Integer> numbers = request.getNumbers();
         int sum = 0;
         for (int num : numbers) {
             sum += num;

@@ -5,15 +5,17 @@ import java.util.List;
 public class CalculatorListRequest {
     private List<Integer> numbers;
 
+    public CalculatorListRequest() {}
+
     public CalculatorListRequest(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
-    public List<Integer> getList() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public void setList(List<Integer> list) {
-        this.numbers = list;
+    public void setNumbers(List<Integer> numbers) {
+        this.numbers = numbers;
     }
 }
