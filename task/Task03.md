@@ -54,6 +54,7 @@
 
         // 람다식과 함수형 인터페이스를 사용한 정렬
         Collections.sort(names, (String o1, String o2) -> o1.compareTo(o2));
+    }
 
 ###
 #### 함수형 인터페이스
