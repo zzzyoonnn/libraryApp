@@ -4,6 +4,7 @@ import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
+import com.group.libraryapp.service.user.UserService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,14 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private  final UserService userService;
     // private final List<User> users = new ArrayList<>();
     private final JdbcTemplate jdbcTemplate;
 
     // jdbcTemplate을 생성자에 스프링이 넣어줌
     public UserController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userService = new UserService(jdbcTemplate);
     }
     // -> jdbcTemplate을 이용해 SQL을 날릴 수 있다.
     // -> 생성자를 만들어 jdbcTemplate을 파라미터로 넣으면, 자동으로 들어온다.
@@ -67,17 +70,7 @@ public class UserController {
 
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
-        // id를 기준으로 유저가 존재하는지 확인하기 위해 SELECT 쿼리 작성
-        String readSql = "SELECT * FROM user WHERE id = ?";
-        // SQL을 날려 DB에 데이터가 있는지 확인
-        // jdbcTemplate.query()의 결과인 List가 비어 있다면, 유저 X
-        boolean isUserNotExitst = jdbcTemplate.query(readSql, (rs, rowNum) -> 0, request.getId()).isEmpty();
-        if (isUserNotExitst) {                          // 만약 유저가 존재하지 않는다면
-            throw new IllegalArgumentException();       // IllegalArgumentException 던짐
-        }
-
-        String sql = "UPDATE user SET name = ? WHERE id = ?";
-        jdbcTemplate.update(sql, request.getName(), request.getId());
+        userService.updateUser(request);
     }
 
     @DeleteMapping("/user")
