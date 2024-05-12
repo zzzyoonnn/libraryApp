@@ -4,16 +4,17 @@ import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.repository.user.UserRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service        // UserService를 스프링 빈으로 등록
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(JdbcTemplate jdbcTemplate) {
-        userRepository = new UserRepository(jdbcTemplate);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     // Controller가 객체로 변환한 것을 받을 것이기 때문에 UserUpdateRequest 객체만 받음
