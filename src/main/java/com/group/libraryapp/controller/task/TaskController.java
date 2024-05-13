@@ -1,9 +1,9 @@
 package com.group.libraryapp.controller.task;
 
-import com.group.libraryapp.dto.task.request.*;
+import com.group.libraryapp.dto.task.request.CalculationRequest;
+import com.group.libraryapp.dto.task.request.CalculatorListRequest;
+import com.group.libraryapp.dto.task.request.DayOfTheWeekRequest;
 import com.group.libraryapp.dto.task.response.CalculationResponse;
-import com.group.libraryapp.dto.task.response.FruitCostResponse;
-import com.group.libraryapp.service.task.FruitService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
