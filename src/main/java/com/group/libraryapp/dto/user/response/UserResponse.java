@@ -13,6 +13,14 @@ public class UserResponse {
         this.age = age;
     }
 
+    // UserResponce
+    // UserServiceV2를 간략히 쓰기 위해 생성
+    public UserResponse(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.age = user.getAge();
+    }
+
     public UserResponse(long id, User user) {
         this.id = id;
         this.name = user.getName();

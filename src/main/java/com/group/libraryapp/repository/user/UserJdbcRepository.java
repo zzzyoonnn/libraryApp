@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository     // UserRepository를 스프링 빈으로 등록
-public class UserRepository {
+public class UserJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public boolean isUserNotExitst(long id) {
+    public boolean isUserNotExist(long id) {
         String readSql = "SELECT * FROM user WHERE id = ?";
         return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
     }
