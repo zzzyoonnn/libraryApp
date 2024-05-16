@@ -29,7 +29,7 @@ public class UserServiceV1 {
     }
 
     public void deleteUser(String name) {
-        if (userJdbcRepository.isUserNotExit(name)) {                          // 만약 유저가 존재하지 않는다면
+        if (userJdbcRepository.isUserNotExit(name)) {   // 만약 유저가 존재하지 않는다면
             throw new IllegalArgumentException();       // IllegalArgumentException 던짐
         }
 
