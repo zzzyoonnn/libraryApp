@@ -38,7 +38,6 @@ public class UserServiceV2 {
     }
 
 
-
     // 유저 업데이트 기능
     public void updateUser(UserUpdateRequest request) {
         // userRepository에 user가 없다면 Optional의 orElseThrow를 사용해 예외를 던진다.
@@ -53,6 +52,13 @@ public class UserServiceV2 {
         userRepository.save(user);
     }
 
+    public void deleteUser(String name) {
+        User user = userRepository.findByName(name)
+                .orElseThrow(IllegalArgumentException::new);
+
+        // 주어지는 데이터를 DB에서 제거한다.
+        userRepository.delete(user);
+    }
 
 
 }
