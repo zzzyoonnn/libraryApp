@@ -25,4 +25,8 @@ public class UserLoanHistory {
         this.bookName = book_name;
         this.isReturn = false;
     }
+
+    public void doReturn() {
+        this.isReturn = true;
+    }
 }
