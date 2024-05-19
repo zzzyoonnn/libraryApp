@@ -19,7 +19,7 @@ public class User {
     private Integer age;        // 테이블과 동일하기 때문에 @Column 어노테이션 생략 가능
 
     // 1 : N 관계(이 부분을 지운다면 단방향으로 @ManyToOne 사용)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     // JPA는 기본 생성자가 꼭 필요하다!
