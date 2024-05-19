@@ -18,7 +18,7 @@ public class User {
     private String name;
     private Integer age;        // 테이블과 동일하기 때문에 @Column 어노테이션 생략 가능
 
-    // 1 : N 관계
+    // 1 : N 관계(이 부분을 지운다면 단방향으로 @ManyToOne 사용)
     @OneToMany(mappedBy = "user")
     private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
