@@ -1,6 +1,10 @@
 package com.group.libraryapp.domain.user;
 
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,6 +17,10 @@ public class User {
     @Column(nullable = false, length = 20, name = "name")       // name varchar(20)
     private String name;
     private Integer age;        // 테이블과 동일하기 때문에 @Column 어노테이션 생략 가능
+
+    // 1 : N 관계
+    @OneToMany(mappedBy = "user")
+    private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     // JPA는 기본 생성자가 꼭 필요하다!
     protected User() {}
