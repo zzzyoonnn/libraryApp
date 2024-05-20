@@ -49,4 +49,19 @@ public class User {
     public void updateName(String name) {
         this.name = name;
     }
+
+    // 대출 기능 리팩토링
+    public void loanBook(String bookName) {
+        this.userLoanHistories.add(new UserLoanHistory(this, bookName));
+    }
+
+    // 반납 기능 리팩토링
+    public void returnBook(String bookName) {
+        UserLoanHistory targetHistory = this.userLoanHistories.stream()         // 함수형 프로그래밍 할 수 있게 stream 시작
+                .filter(history -> history.getBookName().equals(bookName))      // filter : 들어오는 객체즐 중, 다음 조건을 충족하는 것만 필터링
+                .findFirst()                                                    // 첫 번째로 해당하는 UserLoanHistory 찾기
+                .orElseThrow(IllegalArgumentException::new);                    // 없다면 IllegalArgumentException 발생
+
+        targetHistory.doReturn();       // doReturn을 통해 반납 처리
+    }
 }
