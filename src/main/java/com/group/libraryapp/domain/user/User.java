@@ -1,12 +1,14 @@
 package com.group.libraryapp.domain.user;
 
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class User {
 
     @Id         // PRIMARY KEY. import할 때, javax.persistence로 import 하기
@@ -21,9 +23,6 @@ public class User {
     // 1 : N 관계(이 부분을 지운다면 단방향으로 @ManyToOne 사용)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
-
-    // JPA는 기본 생성자가 꼭 필요하다!
-    protected User() {}
 
     public User(String name, Integer age) {
         if (name == null || name.isBlank()) {
